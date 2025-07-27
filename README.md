@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+BlaWhiMonad
 
-## Getting Started
+Welcome to **BlaWhiMonad**, a mystical card flipping duel created on the Monad testnet!
 
-First, run the development server:
+Choose a side: **Black Monad** or **White Monad**.
+Each player chooses a card - if they match, it's a draw. If not, fate decides the winner.
+The winner takes the pot. The loser goes off to test his luck
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Built with **Next.js** + **Wagmi** + **Viem**
+- Powered by **Multisynq**
+- Runs on the **Monad Testnet**
+- Open Source
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+### 🎯 How to Play
 
-To learn more about Next.js, take a look at the following resources:
+1. Connect your wallet (MetaMask)
+2. Create or join a game
+3. Choose your Monad
+4. Wait for results... destiny awaits.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

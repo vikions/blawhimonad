@@ -1,7 +1,5 @@
 {
-  "build": {
-    "env": {
-      "NEXT_PRIVATE_SKIP_ESLINT": "true"
-    }
+  "eslint": {
+    "ignoreDuringBuilds": true
   }
 }

@@ -17,6 +17,8 @@ import {
 } from 'viem';
 import CoinflipV2Abi from '../contracts/CoinflipV2.json';
 
+import { createMultisynq } from 'multisynq-sdk';
+
 const monad = defineChain({
   id: 10143,
   name: 'Monad Testnet',
@@ -45,6 +47,28 @@ export default function Home() {
   const [winnerInfo, setWinnerInfo] = useState<string | null>(null);
   const [openGames, setOpenGames] = useState<bigint[]>([]);
   const [pollingInterval, setPollingInterval] = useState<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const pollMultisynq = async () => {
+      try {
+        const res = await fetch('https://sync.multisynq.io/events', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            address: contractAddress,
+            event: 'GameResolved',
+            fromBlock: 'latest',
+            limit: 1
+          })
+        });
+        const data = await res.json();
+        console.log('[Multisynq] Latest GameResolved:', data);
+      } catch (e) {
+        console.error('[Multisynq] Failed to fetch events:', e);
+      }
+    };
+    pollMultisynq();
+  }, []);
 
   const fetchOpenGames = async () => {
     try {
@@ -78,9 +102,13 @@ export default function Home() {
             setUiState('waiting');
           }
           if (decoded.eventName === 'GameResolved') {
-            const { gameId: resolvedId, winner, winningChoice } = decoded.args as any;
+            const { gameId: resolvedId, winner, winningChoice } = decoded.args as unknown as {
+              gameId: bigint;
+              winner: string;
+              winningChoice: bigint;
+            };
             if (resolvedId.toString() === gameId) {
-              const choice = winningChoice === 1 ? 'White' : 'Black';
+              const choice = winningChoice === 1n ? 'White' : 'Black';
               if (winner === '0x0000000000000000000000000000000000000000') {
                 setWinnerInfo('Draw! Bets returned.');
               } else {

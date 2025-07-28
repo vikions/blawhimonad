@@ -1,5 +1,4 @@
 'use client';
-
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { WagmiProvider, createConfig, http } from 'wagmi';
 import { defineChain } from 'viem';
